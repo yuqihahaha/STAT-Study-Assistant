@@ -1,8 +1,8 @@
 import streamlit as st
+from ai_service import ask_question
 
 st.set_page_config(
     page_title="STAT Study Assistant",
-    page_icon=":book:",
 )
 
 st.title("STAT Study Assistant")
@@ -12,12 +12,19 @@ notes = st.text_area("Course Materials", height=300, placeholder="Paste your cou
 
 question = st.text_input("Ask a Question", placeholder="Type your question here...")
 
-if st.button("Ask"):
+if st.button("Ask", type="primary"):
     if not notes.strip():
-        st.warning("Please paste your course materials before asking a question.")
+        st.warning("Please enter some course materials before asking a question.")
     elif not question.strip():
         st.warning("Please enter a question.")
     else:
-        st.success("Question has been submitted!")
-        st.write("You asked:", question)
-        st.write("Placeholder response.")
+        try:
+            with st.spinner("Thinking..."):
+                answer = ask_question(notes, question)
+            st.subheader("Answer:")
+            st.write(answer)
+        except ValueError as error:
+            st.error(str(error))
+
+        except Exception as error:
+            st.error(f"Error: {str(error)}")

@@ -25,17 +25,17 @@ def ask_question(notes: str, question: str) -> str:
 
     # Create a prompt for the model
     prompt = """
-    You are a patient and helpful statistics tutor.
+    You are a beginner-friendly statistics tutor.
 
     Answer using the student's provided notes when possible.
     Explain the answer step by step.
-    Define mathematical notation clearly.
-    Use a simple example when it helps.
+    Keep the response concise, usually under 400 words.
+    Use examples only when helpful.
     """
 
     # Call the OpenAI API to get a response
     response = client.responses.create(
-        model="gpt-5-mini",
+        model="gpt-5.6-luna",
         instructions=prompt,
         input=f"""
         STUDENT NOTES:
