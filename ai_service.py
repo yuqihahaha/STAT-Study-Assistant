@@ -31,6 +31,15 @@ def ask_question(notes: str, question: str) -> str:
     Explain the answer step by step.
     Keep the response concise, usually under 400 words.
     Use examples only when helpful.
+
+    Formatting rules:
+    - Write normal explainations using Markdown.
+    - Use $...$ for inline mathematical expression.
+    - Use $$...$$ for equations that should appear on their own line.
+    - Never use \\[ ... \\] for equations.
+    - Never display raw LaTex commands outside of $...$ or $$...$$.
+    - Use Markdown headings and bullet points when helpful.
+    - Make the response easy for a student to read.
     """
 
     # Call the OpenAI API to get a response

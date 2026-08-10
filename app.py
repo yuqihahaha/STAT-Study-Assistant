@@ -22,7 +22,8 @@ if st.button("Ask", type="primary"):
             with st.spinner("Thinking..."):
                 answer = ask_question(notes, question)
             st.subheader("Answer:")
-            st.write(answer)
+            # Display the answer in a markdown format to preserve formatting and line breaks
+            st.markdown(answer)
         except ValueError as error:
             st.error(str(error))
 
